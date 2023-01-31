@@ -49,6 +49,7 @@ public class CarroServiceTest {
         CarroService carroService = new CarroServiceImpl();
         Carro carro = new Carro ("azul", "fiat", "uno", 2020, 190);
 
+
         // Quando
         carroService.ligar(carro);
         carroService.acelerar(carro, 100);
@@ -101,7 +102,7 @@ public class CarroServiceTest {
         Carro carro = new Carro ("azul", "fiat", "uno", 2020, 100);
 
         // Quando
-        carroService.acelerar(carro, 20);
+        carroService.acelerar(carro, 200);
         carroService.acelerar(carro, 30);
         carroService.frear(carro, 10);
 
@@ -128,6 +129,42 @@ public class CarroServiceTest {
         Assert.assertFalse(carro.isLigado());
         System.out.println("Velocidade atual: " + carro.getVelocidadeAtual());
         System.out.println("Carro está ligado?: " + carro.isLigado());
+    }
+
+    @Test
+    public void frearComValorNegativo() {
+
+        // Dado
+        CarroService carroService = new CarroServiceImpl();
+        Carro carro = new Carro ("azul", "fiat", "uno", 2020, 100);
+
+        // Quando
+        carroService.ligar(carro);
+        carroService.acelerar(carro, 90);
+        carroService.frear(carro, -10);
+
+        // Então
+        Assert.assertTrue(carro.isLigado());
+        Assert.assertEquals(90, carro.getVelocidadeAtual());
+        System.out.println("Velocidade atual: " + carro.getVelocidadeAtual());
+    }
+
+    @Test
+    public void acelerarComValorNegativo() {
+
+        // Dado
+        CarroService carroService = new CarroServiceImpl();
+        Carro carro = new Carro ("azul", "fiat", "uno", 2020, 100);
+
+        // Quando
+        carroService.ligar(carro);
+        carroService.acelerar(carro, -90);
+        carroService.acelerar(carro, 20);
+
+        // Então
+        Assert.assertTrue(carro.isLigado());
+        Assert.assertEquals(20, carro.getVelocidadeAtual());
+        System.out.println("Velocidade atual: " + carro.getVelocidadeAtual());
     }
 
 }
