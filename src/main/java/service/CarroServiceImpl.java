@@ -5,21 +5,22 @@ import model.Carro;
 public class CarroServiceImpl implements CarroService {
     @Override
     public void acelerar(Carro carro, int velocidadeAMais) {
-        if (velocidadeAMais < 0) {
-            velocidadeAMais = 0;
-        }
 
-        carro.setVelocidadeAtual(carro.getVelocidadeAtual() + velocidadeAMais);
+            if (velocidadeAMais < 0) {
+                velocidadeAMais = 0;
+            }
 
-        if (carro.getVelocidadeAtual() > carro.getVelocidadeMaxima()) {
-            carro.setVelocidadeAtual(carro.getVelocidadeMaxima());
-        } else if (carro.getVelocidadeAtual() <= 0) {
-            carro.setVelocidadeAtual(0);
-        } else if (carro.getVelocidadeAtual() > 0 && !carro.isLigado()){
-            carro.setVelocidadeAtual(0);
-        } else if (carro.getVelocidadeAtual() < 0 && !carro.isLigado()) {
-            carro.setVelocidadeAtual(0);
-        }
+            carro.setVelocidadeAtual(carro.getVelocidadeAtual() + velocidadeAMais);
+
+            if (carro.getVelocidadeAtual() > carro.getVelocidadeMaxima()) {
+                carro.setVelocidadeAtual(carro.getVelocidadeMaxima());
+            } else if (carro.getVelocidadeAtual() <= 0) {
+                carro.setVelocidadeAtual(0);
+            } else if (carro.getVelocidadeAtual() > 0 && !carro.isLigado()){
+                carro.setVelocidadeAtual(0);
+            } else if (carro.getVelocidadeAtual() < 0 && !carro.isLigado()) {
+                carro.setVelocidadeAtual(0);
+            }
 
     }
 
